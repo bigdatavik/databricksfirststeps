@@ -51,7 +51,7 @@ This modular pattern ensures data lineage, scalability, and easy extensibility f
 
 ## ⚙️ Prerequisites
 
-- Databricks workspace (with permissions for Unity Catalog or DBFS)
+- Databricks workspace (with permissions for Unity Catalog)
 - Databricks Runtime with Delta Lake support
 - Upload access for CSV source files
 
@@ -89,7 +89,7 @@ Pull requests and discussions are welcome! For bug reports or suggestions, pleas
 
 ## 📚 Resources
 
-- [Databricks Medallion Lakehouse Architecture](https://www.databricks.com/solutions/data-lakehouse)
+- [Databricks Medallion Lakehouse Architecture](https://docs.databricks.com/aws/en/lakehouse/medallion)
 - [Delta Lake Documentation](https://docs.delta.io/)
 - [Spark SQL Guide](https://spark.apache.org/docs/latest/sql-getting-started.html)
 
