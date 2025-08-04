@@ -94,8 +94,3 @@ Pull requests and discussions are welcome! For bug reports or suggestions, pleas
 - [Spark SQL Guide](https://spark.apache.org/docs/latest/sql-getting-started.html)
 
 ### © 2024  | For demonstration, education, and payer analytics development only.
-
-**Tips:**
-- Replace `/` with your GitHub namespace.
-- Replace data file paths if you change folder structure.
-- Add diagrams or screenshots if desired for extra clarity!
