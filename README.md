@@ -99,7 +99,3 @@ Pull requests and discussions are welcome! For bug reports or suggestions, pleas
 - Replace `/` with your GitHub namespace.
 - Replace data file paths if you change folder structure.
 - Add diagrams or screenshots if desired for extra clarity!
-
-Let me know if you'd like a shorter version, alternate formatting, or content specifically tailored to data science, engineering, or curriculum needs.
-
-[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/11782157/1d551b3e-e0e5-4042-9621-894c605a06a7/python-USETHIS_payer_medallion_Load_copy_into_SQL.html
