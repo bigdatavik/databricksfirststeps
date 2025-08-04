@@ -1,0 +1,407 @@
+{
+  "datasets": [
+    {
+      "name": "fa5c03f7",
+      "displayName": "claims_enriched",
+      "queryLines": [
+        "SELECT * FROM claims_enriched"
+      ],
+      "catalog": "quickstart_catalog_vkm_external",
+      "schema": "payor_gold2"
+    },
+    {
+      "name": "f8be664f",
+      "displayName": "member_claim_summary",
+      "queryLines": [
+        "SELECT * FROM member_claim_summary"
+      ],
+      "catalog": "quickstart_catalog_vkm_external",
+      "schema": "payor_gold2"
+    }
+  ],
+  "pages": [
+    {
+      "name": "ee894cbc",
+      "displayName": "Payor_Humana",
+      "layout": [
+        {
+          "widget": {
+            "name": "5abefcbb",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "fa5c03f7",
+                  "fields": [
+                    {
+                      "name": "gender",
+                      "expression": "`gender`"
+                    },
+                    {
+                      "name": "sum(total_charge)",
+                      "expression": "SUM(`total_charge`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "gender",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  },
+                  "displayName": "gender"
+                },
+                "y": {
+                  "fieldName": "sum(total_charge)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Sum of total_charge"
+                }
+              },
+              "frame": {
+                "title": "Claims by Gender",
+                "showTitle": true,
+                "showDescription": false
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "cbef3e30",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "fa5c03f7",
+                  "fields": [
+                    {
+                      "name": "claim_status",
+                      "expression": "`claim_status`"
+                    },
+                    {
+                      "name": "sum(total_charge)",
+                      "expression": "SUM(`total_charge`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "claim_status",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  },
+                  "displayName": "claim_status"
+                },
+                "y": {
+                  "fieldName": "sum(total_charge)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Sum of total_charge"
+                }
+              },
+              "frame": {
+                "title": "Total Charges by Claim Status",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 0,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "0e1ea1c0",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "fa5c03f7",
+                  "fields": [
+                    {
+                      "name": "claim_status",
+                      "expression": "`claim_status`"
+                    },
+                    {
+                      "name": "sum(total_charge)",
+                      "expression": "SUM(`total_charge`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "claim_status",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  },
+                  "displayName": "claim_status"
+                },
+                "y": {
+                  "fieldName": "sum(total_charge)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Sum of total_charge"
+                }
+              },
+              "frame": {
+                "title": "Total Charges by Claim Status",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "57ee7caa",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "fa5c03f7",
+                  "fields": [
+                    {
+                      "name": "state",
+                      "expression": "`state`"
+                    },
+                    {
+                      "name": "sum(total_charge)",
+                      "expression": "SUM(`total_charge`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "state",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  },
+                  "displayName": "state"
+                },
+                "y": {
+                  "fieldName": "sum(total_charge)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Sum of total_charge"
+                }
+              },
+              "frame": {
+                "title": "Claims by State",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 6,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "36b4be03",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "fa5c03f7",
+                  "fields": [
+                    {
+                      "name": "specialty",
+                      "expression": "`specialty`"
+                    },
+                    {
+                      "name": "count(claim_id)",
+                      "expression": "COUNT(`claim_id`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "specialty",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  },
+                  "displayName": "specialty"
+                },
+                "y": {
+                  "fieldName": "count(claim_id)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Count of claim_id"
+                }
+              },
+              "frame": {
+                "title": "Claims by Provider Specialty",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 12,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "89886c86",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "fa5c03f7",
+                  "fields": [
+                    {
+                      "name": "provider_name",
+                      "expression": "`provider_name`"
+                    },
+                    {
+                      "name": "sum(total_charge)",
+                      "expression": "SUM(`total_charge`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "provider_name",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  },
+                  "displayName": "provider_name"
+                },
+                "y": {
+                  "fieldName": "sum(total_charge)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Sum of total_charge"
+                }
+              },
+              "frame": {
+                "title": "Total Charges by Provider",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 12,
+            "width": 3,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    },
+    {
+      "name": "51882148",
+      "displayName": "Global Filters",
+      "layout": [
+        {
+          "widget": {
+            "name": "21d2e1f7",
+            "spec": {
+              "version": 2,
+              "widgetType": "range-slider",
+              "encodings": {
+                "fields": []
+              },
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_GLOBAL_FILTERS"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    }
+  }
+}
