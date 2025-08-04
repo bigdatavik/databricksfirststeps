@@ -58,7 +58,7 @@ This modular pattern ensures data lineage, scalability, and easy extensibility f
 ## 🛠️ Getting Started
 
 ```bash
-git clone https://github.com//.git
+git clone https://github.com/bigdatavik/databricksfirststeps.git
 # or import the Databricks notebook directly via UI
 ```
 In Databricks:
