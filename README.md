@@ -1,4 +1,4 @@
-# payer Medallion Lakehouse Training Project
+# Payer Medallion Lakehouse Training Project
 
 This project demonstrates a robust, end-to-end medallion architecture for healthcare **payer data** analytics using Databricks, Delta Lake, and PySpark/Spark SQL. The pipeline covers data ingestion, cleansing, modeling, and analytics, following the **Bronze/Silver/Gold (Medallion)** pattern.
 
