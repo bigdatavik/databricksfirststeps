@@ -1,0 +1,13 @@
+# Requirements for Databricks Payer Data Pipeline Utilities
+# These are typically available in Databricks runtime, but listed for completeness
+
+requests>=2.25.0
+pyspark>=3.0.0
+
+# Note: These packages are usually pre-installed in Databricks:
+# - zipfile (built-in)
+# - tempfile (built-in) 
+# - os (built-in)
+# - shutil (built-in)
+# - io (built-in)
+# - time (built-in)

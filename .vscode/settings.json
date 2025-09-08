@@ -1,0 +1,15 @@
+{
+    "python.defaultInterpreterPath": "/Users/vik.malhotra/anaconda3/envs/azure_databricks/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "jupyter.defaultKernel": "azure_databricks",
+    "files.associations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.formatting.provider": "black",
+    "jupyter.interactiveWindow.cellMarker.codeRegex": "^# COMMAND ----------|^# Databricks notebook source|^(#\\s*%%|#\\s*\\<codecell\\>|#\\s*In\\[\\d*?\\]|#\\s*In\\[ \\])",
+    "jupyter.interactiveWindow.cellMarker.default": "# COMMAND ----------"
+}
+

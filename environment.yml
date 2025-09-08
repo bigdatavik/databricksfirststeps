@@ -1,0 +1,23 @@
+name: azure_databricks
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12.0
+  - pip
+  - jupyter
+  - notebook
+  - ipykernel
+  - pip:
+    - databricks-agents==1.1.0
+    - databricks-connect==16.4.5
+    - databricks-dlt==0.3.0
+    - databricks-mcp==0.1.0
+    - databricks-sdk==0.55.0
+    - databricks-sql-connector==4.0.5
+    - pyspark
+    - delta-spark
+    - pandas
+    - numpy
+    - matplotlib
+    - seaborn

@@ -54,19 +54,55 @@ This modular pattern ensures data lineage, scalability, and easy extensibility f
 - Databricks workspace (with permissions for Unity Catalog)
 - Databricks Runtime with Delta Lake support
 - Upload access for CSV source files
+- Python 3.12+ with conda/anaconda installed
 
 ## 🛠️ Getting Started
 
+### Local Environment Setup
+
+1. **Clone the repository:**
 ```bash
 git clone https://github.com/bigdatavik/databricksfirststeps.git
-# or import the Databricks notebook directly via UI
+cd databricksfirststeps
 ```
-In Databricks:
+
+2. **Activate the Azure Databricks environment:**
+```bash
+# Option 1: Use the provided activation script
+./activate_env.sh
+
+# Option 2: Activate manually
+conda activate azure_databricks
+```
+
+3. **Configure Databricks CLI (first time only):**
+```bash
+databricks configure --token
+# Enter your Databricks workspace URL and personal access token
+```
+
+4. **Set up environment variables:**
+```bash
+# Copy the template and fill in your values
+cp databricks_config.template databricks_config.env
+# Edit databricks_config.env with your actual Databricks configuration
+```
+
+### In Databricks:
 
 1. Open the notebook in your Workspace or Repo folder.
 2. Edit the top parameter cells for your environment (optional).
 3. Upload your sample data files to `/Volumes////...` as needed.
 4. Run the notebook and explore your new lakehouse!
+
+### Environment Details
+
+This project is configured to use the `azure_databricks` conda environment which includes:
+- Python 3.12.0
+- Databricks SDK and CLI tools
+- PySpark and Delta Lake
+- Jupyter notebook support
+- All necessary data science libraries
 
 ## 📑 Project Structure
 

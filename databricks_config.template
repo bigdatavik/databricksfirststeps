@@ -1,0 +1,22 @@
+# Azure Databricks Environment Configuration Template
+# Copy this file to databricks_config.env and fill in your actual values
+
+# Databricks Workspace Configuration
+DATABRICKS_HOST=https://adb-<workspace-id>.<random-number>.azuredatabricks.net
+DATABRICKS_TOKEN=your_personal_access_token_here
+
+# Azure Configuration (if using Azure authentication)
+AZURE_CLIENT_ID=your_azure_client_id
+AZURE_CLIENT_SECRET=your_azure_client_secret
+AZURE_TENANT_ID=your_azure_tenant_id
+
+# Databricks Connect Configuration
+DATABRICKS_CLUSTER_ID=your_cluster_id_here
+
+# Unity Catalog Configuration
+DATABRICKS_CATALOG=your_catalog_name
+DATABRICKS_SCHEMA=your_schema_name
+
+# Volume Configuration for Data Files
+DATABRICKS_VOLUME_PATH=/Volumes/your_catalog/your_schema/your_volume
+
