@@ -71,16 +71,17 @@ In Databricks:
 ## 📑 Project Structure
 
 ```
-.
-├── payer_medallion_etl_notebook.py
-├── data/
+├── DBSQL_Workshop_ETL and Analytics_10072025.ipynb
+├── data
 │   ├── claims.csv
-│   ├── diagnosis.csv
+│   ├── diagnoses.csv
 │   ├── procedures.csv
 │   ├── providers.csv
-│   └── members.csv
+│   ├── member.csv
+│   └── Payor_Archive.zip
+├── past labs
 ├── README.md
-└── LICENSE
+└── LICENSE.md
 ```
 
 ## 🧑💻 Contributing
@@ -93,4 +94,5 @@ Pull requests and discussions are welcome! For bug reports or suggestions, pleas
 - [Delta Lake Documentation](https://docs.delta.io/)
 - [Spark SQL Guide](https://spark.apache.org/docs/latest/sql-getting-started.html)
 
-### © 2024  | For demonstration, education, and payer analytics development only.
+### © 2025  | For demonstration, education, and payer analytics development only.
+*Last updated October 8, 2025*
