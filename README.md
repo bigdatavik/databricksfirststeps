@@ -95,4 +95,4 @@ Pull requests and discussions are welcome! For bug reports or suggestions, pleas
 - [Spark SQL Guide](https://spark.apache.org/docs/latest/sql-getting-started.html)
 
 ### © 2025  | For demonstration, education, and payer analytics development only.
-*Last updated October 8, 2025*
+*Last updated: October 8, 2025*
