@@ -24,6 +24,7 @@ This modular pattern ensures data lineage, scalability, and easy extensibility f
 - **Completely Parameterized:** All paths, database, and table names are provided as widgets/variables for effortless re-use
 - **Synthetic Demo Data:** Simulated payer, claims, diagnostic, procedure, member, and provider tables for training and testing
 - **Production-Grade Practices:** Explicit schema definitions, robust error handling, clear layering, and portability
+- **Bias Analysis Module:** Comprehensive bias detection and mitigation tools for actuarial continuing education
 
 ## 📝 How to Use
 
@@ -48,6 +49,8 @@ This modular pattern ensures data lineage, scalability, and easy extensibility f
 - payer data quality and pipeline testing
 - Data platform engineering training (Databricks focused)
 - Accelerating migration to medallion/lakehouse in real-world payer environments
+- **Actuarial Continuing Education:** Bias detection and mitigation in healthcare data
+- **Fairness Analysis:** Social bias detection in healthcare analytics
 
 ## ⚙️ Prerequisites
 
@@ -73,6 +76,11 @@ In Databricks:
 ```
 .
 ├── payer_medallion_etl_notebook.py
+├── bias_analysis/
+│   ├── DBSQL_Bias_Analysis_Healthcare.ipynb
+│   └── bias_detection_utils.py
+├── documentation/
+│   └── actuarial_ce_guidance.md
 ├── data/
 │   ├── claims.csv
 │   ├── diagnosis.csv
@@ -87,10 +95,33 @@ In Databricks:
 
 Pull requests and discussions are welcome! For bug reports or suggestions, please open a GitHub issue.
 
+## 🔍 Bias Analysis Module
+
+This project now includes a comprehensive bias analysis module designed for actuarial continuing education, based on USQS and Humana guidance.
+
+### Bias Categories Covered
+- **Statistical Bias**: Survivorship bias, selection bias, data bias detection
+- **Cognitive Bias**: Anchoring bias, confirmation bias analysis
+- **Social Bias**: Racial bias, gender bias, age bias detection
+- **Modeling Bias**: Fairness metrics, disparate impact analysis
+
+### Key Features
+- Automated bias detection across multiple categories
+- Healthcare-specific bias analysis tools
+- Actuarial continuing education compliance
+- Comprehensive reporting and documentation
+
+### Getting Started with Bias Analysis
+1. Open `bias_analysis/DBSQL_Bias_Analysis_Healthcare.ipynb`
+2. Review `documentation/actuarial_ce_guidance.md` for CE requirements
+3. Run the notebook with your healthcare data
+4. Generate bias analysis reports for CE documentation
+
 ## 📚 Resources
 
 - [Databricks Medallion Lakehouse Architecture](https://docs.databricks.com/aws/en/lakehouse/medallion)
 - [Delta Lake Documentation](https://docs.delta.io/)
 - [Spark SQL Guide](https://spark.apache.org/docs/latest/sql-getting-started.html)
+- [Actuarial Continuing Education Guidance](documentation/actuarial_ce_guidance.md)
 
 ### © 2024  | For demonstration, education, and payer analytics development only.
