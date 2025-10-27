@@ -12,29 +12,12 @@ This interactive workshop guides actuaries through:
 - 🎯 **Simple SQL approach**: Minimal PySpark, maximum hands-on exercises
 - 📈 **Regulatory compliance**: Meeting ASOP and ACA anti-discrimination requirements
 
-## 🌟 What Makes This Workshop Special?
-
-This isn't just another Databricks tutorial! It's specifically designed for actuaries who:
-- ✅ **Want to transition from SAS** but need familiar examples and comparisons
-- ✅ **Need to get productive quickly** without learning complex PySpark syntax
-- ✅ **Care about actuarial use cases** like loss ratios, IBNR, and development triangles
-- ✅ **Must meet compliance requirements** (ASOP, ACA, data quality standards)
-- ✅ **Want hands-on practice** with real healthcare payer data scenarios
-
-**Key Differentiators:**
-- 📊 Exercises mirror actual actuarial work (pricing, reserving, risk management)
-- 🔍 Emphasis on data quality and bias detection (critical for rate filings!)
-- 💡 SAS PROC SQL → Databricks SQL translations throughout
-- 🎯 90% SQL, 10% setup - get to analytics fast!
-- ⚖️ Regulatory and ethical considerations built-in
 
 ## 📂 Medallion Architecture (Simplified for Actuaries)
 
 - **Bronze Layer (Quick Setup):** Raw data ingestion from CSV files using `COPY INTO` - streamlined for fast setup
 - **Silver Layer (Quick Setup):** Basic cleaning and type corrections - get to analytics quickly!
 - **Gold Layer (Main Focus 🎉):** Deep actuarial analytics, interactive exercises, and business insights
-
-**Workshop Philosophy:** Spend less time on data loading, more time on actuarial analysis!
 
 This modular pattern ensures data lineage, scalability, and aligns with actuarial workflow requirements.
 
@@ -70,27 +53,16 @@ This modular pattern ensures data lineage, scalability, and aligns with actuaria
 
 ### For Workshop Participants (Actuaries & Analysts)
 1. **Import the notebook** to your Databricks workspace
-2. **Part 1 (Quick Setup - 15 mins)**: Run Bronze/Silver cells to load data
+2. **Part 1 (Quick Setup - 10 mins)**: Run Bronze/Silver cells to load data
    - Just execute the cells - they're simplified!
    - Creates your working datasets
-3. **Part 2 (The Fun Part! 🎉 - 2-3 hours)**: Gold Layer Actuarial Analytics
+3. **Part 2 (The Fun Part! 🎉 - 1.5 hours)**: Gold Layer Actuarial Analytics
    - Work through 6 interactive exercises
    - Compare SAS vs Databricks approaches
    - Build actuarial analytics tables
    - Detect data quality issues and bias
 4. **Explore and experiment**: Modify queries, try your own analyses
 
-### For Instructors
-1. Review the "SAS to Databricks Quick Reference" section with participants
-2. Emphasize the interactive exercises (marked with "YOUR TURN")
-3. Recommended timing:
-   - Setup: 15 minutes
-   - Loss Ratios & Trending: 30 minutes
-   - Development Triangles: 30 minutes
-   - Interactive Exercises 1-4: 60 minutes
-   - Data Quality (Exercise 5): 30-45 minutes
-   - Bias Detection (Exercise 6): 45-60 minutes
-4. Encourage participants to relate examples to their own work
 
 ## 📋 Healthcare Payer Data Model
 
@@ -132,50 +104,27 @@ This modular pattern ensures data lineage, scalability, and aligns with actuaria
 - Geographic and demographic bias analysis
 - Temporal completeness monitoring
 
-## ⚙️ Prerequisites
-
-### Technical Requirements
-- Databricks workspace (with Unity Catalog access)
-- Databricks Runtime 13.0+ with Delta Lake support
-- CSV data files uploaded to Unity Catalog volumes
-
-### Participant Background (Recommended)
-- Actuarial or analytics role (pricing, reserving, underwriting, risk)
-- Experience with SAS (PROC SQL, DATA steps, PROC MEANS/FREQ)
-- Basic SQL knowledge helpful but not required
-- No PySpark experience needed!
 
 ## 🛠️ Getting Started
 
 ### Quick Start (5 minutes)
-```bash
-git clone https://github.com/bigdatavik/databricksfirststeps.git
-```
 
 **In Databricks:**
-1. Import `DBX Workshop_IPA Actuaries_10262025.ipynb` to your Workspace
-2. Upload CSV files from `/data` folder to your Unity Catalog volume
-3. Update parameters in the first cell (catalog name, schema, volume path)
-4. Run cells sequentially - start with Part 1 (Setup), then move to Part 2 (Analytics)
-5. Work through the interactive exercises at your own pace!
+1. In your Databricks *Free Edition* workspace, create new **Git folder** and paste the following github link https://github.com/bigdatavik/databricksfirststeps.git
+2. Run cells sequentially - start with Part 1 (Setup), then move to Part 2 (Analytics)
+3. Work through the interactive exercises at your own pace!
 
-**First Time Using Databricks?** No problem! The notebook includes:
-- Step-by-step instructions
-- SAS comparison examples
-- "YOUR TURN" exercises with hints
-- Beginner-friendly SQL (no PySpark required for exercises)
 
 ## 📑 Project Structure
 
 ```
 ├── DBX Workshop_IPA Actuaries_10262025.ipynb    ⭐ Main actuarial workshop
-├── WORKSHOP_UPDATES.md                           📝 Detailed exercise documentation
 ├── data/
-│   ├── claims.csv                                 💰 Claims data
-│   ├── diagnoses.csv                             🏥 ICD diagnosis codes
-│   ├── procedures.csv                            🔬 CPT/HCPCS codes
-│   ├── providers.csv                             👨‍⚕️ Provider network data
-│   ├── member.csv                                 👥 Member/policy data
+│   ├── claims.csv                                 💰 Medical claim submissions
+│   ├── diagnoses.csv                             🏥 Diagnosis codes from claims
+│   ├── procedures.csv                            🔬 Medical procedures performed
+│   ├── providers.csv                             👨‍⚕️ Healthcare providers
+│   ├── member.csv                                 👥 Health plan enrollees
 │   └── Payor_Archive.zip
 ├── past labs/
 │   ├── DBSQL_Workshop_ETL and Analytics_10072025.ipynb  (Original version)
@@ -184,43 +133,11 @@ git clone https://github.com/bigdatavik/databricksfirststeps.git
 └── LICENSE.md
 ```
 
-## 🧑💻 Contributing
-
-Pull requests and discussions are welcome! For bug reports or suggestions, please open a GitHub issue.
-
-**Feedback from Actuaries Especially Welcome!** If you have ideas for additional exercises or actuarial use cases, we'd love to hear from you.
-
-## 📚 Resources
-
-### Databricks Documentation
-- [Databricks Medallion Lakehouse Architecture](https://docs.databricks.com/aws/en/lakehouse/medallion)
-- [Delta Lake Documentation](https://docs.delta.io/)
-- [Databricks SQL Guide](https://docs.databricks.com/sql/index.html)
-- [Unity Catalog Overview](https://docs.databricks.com/data-governance/unity-catalog/index.html)
-
-### Actuarial Standards & Compliance
-- [Actuarial Standards of Practice (ASOP)](https://www.actuary.org/content/actuarial-standards-practice)
-- [Affordable Care Act (ACA) Requirements](https://www.healthcare.gov/)
-- Healthcare Data Quality Best Practices
-
-### SAS to Databricks Migration
-- [SQL Window Functions Guide](https://docs.databricks.com/sql/language-manual/functions/window_functions.html)
-- [Common Table Expressions (CTEs)](https://docs.databricks.com/sql/language-manual/sql-ref-syntax-qry-select-cte.html)
-
----
-
-## 🎯 Learning Path
-
-1. **Start Here**: `DBX Workshop_IPA Actuaries_10262025.ipynb`
-2. **Reference Guide**: `WORKSHOP_UPDATES.md` for detailed exercise documentation
-3. **Practice**: Modify queries, add your own analyses
-4. **Apply**: Use these patterns with your own actuarial data
-
 ---
 
 ### © 2025 | Designed for actuaries, analysts, and healthcare data professionals
 **Target Audience:** Actuaries and analysts transitioning from SAS to Databricks  
-**Workshop Duration:** 3-4 hours (hands-on)  
+**Workshop Duration:** 2 hours (hands-on)  
 **Difficulty Level:** Beginner-friendly with intermediate analytics concepts  
 
 *Last updated: October 26, 2025*
