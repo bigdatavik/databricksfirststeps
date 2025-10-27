@@ -1,98 +1,143 @@
-# Payer Medallion Lakehouse Training Project
+# Databricks for Actuaries: Healthcare Analytics Workshop
 
-This project demonstrates a robust, end-to-end medallion architecture for healthcare **payer data** analytics using Databricks, Delta Lake, and PySpark/Spark SQL. The pipeline covers data ingestion, cleansing, modeling, and analytics, following the **Bronze/Silver/Gold (Medallion)** pattern.
+This workshop is specifically designed for **actuaries and analysts** familiar with SAS who are new to Databricks, PySpark, and SQL. It provides a hands-on, beginner-friendly introduction to healthcare payer data analytics using Databricks' medallion architecture (Bronze/Silver/Gold layers), with a strong focus on **actuarial use cases**, **data quality**, and **bias detection**.
 
 ## 🚀 Overview
 
-The notebook and supporting scripts guide you through:
-- Structuring a data lakehouse for payer claims data
-- Building a layered ETL process (Bronze → Silver → Gold)
-- Parameterizing locations and schemas for reusable, production-ready pipeline runs
-- Running scalable analytics on healthcare claims, members, providers, diagnosis, and procedure data
+This interactive workshop guides actuaries through:
+- 📊 **Actuarial-focused analytics**: Loss ratios, claims trending, development triangles, frequency/severity
+- 🔍 **Data quality checks**: Completeness, accuracy, duplicates, and validation
+- ⚖️ **Bias detection**: Demographic, geographic, temporal, and provider bias analysis
+- 💻 **SAS to Databricks translation**: Side-by-side comparisons of familiar SAS procedures
+- 🎯 **Simple SQL approach**: Minimal PySpark, maximum hands-on exercises
+- 📈 **Regulatory compliance**: Meeting ASOP and ACA anti-discrimination requirements
 
-## 📂 Medallion Architecture
 
-- **Bronze Layer:** Raw, minimally processed ingested data from CSV files into Delta tables
-- **Silver Layer:** Cleaned, deduplicated, type-corrected, and joined data ready for analysis
-- **Gold Layer:** Curated analytics tables (e.g., claims enrichment, member claim summaries)
+## 📂 Medallion Architecture (Simplified for Actuaries)
 
-This modular pattern ensures data lineage, scalability, and easy extensibility for additional healthcare analytics use cases.
+- **Bronze Layer (Quick Setup):** Raw data ingestion from CSV files using `COPY INTO` - streamlined for fast setup
+- **Silver Layer (Quick Setup):** Basic cleaning and type corrections - get to analytics quickly!
+- **Gold Layer (Main Focus 🎉):** Deep actuarial analytics, interactive exercises, and business insights
+
+This modular pattern ensures data lineage, scalability, and aligns with actuarial workflow requirements.
 
 ## 🏗️ Features
 
-- **PySpark + Spark SQL:** Hybrid approach for transformation logic, enabling easy customization and automation
-- **Completely Parameterized:** All paths, database, and table names are provided as widgets/variables for effortless re-use
-- **Synthetic Demo Data:** Simulated payer, claims, diagnostic, procedure, member, and provider tables for training and testing
-- **Production-Grade Practices:** Explicit schema definitions, robust error handling, clear layering, and portability
+### 🎯 Actuarial Analytics Exercises
+- **Loss Ratio Analysis**: Calculate loss ratios by specialty, state, and plan type
+- **Claims Trending**: Month-over-month and year-over-year growth analysis using window functions
+- **Development Triangles**: Claims emergence patterns for reserving (IBNR indicators)
+- **Frequency & Severity**: Risk segmentation and pricing metrics
+- **High-Risk Member Identification**: Using percentile analysis (95th, 99th)
 
-## 📝 How to Use
+### 🔍 Data Quality & Compliance
+- **Completeness Checks**: Identify missing critical fields
+- **Accuracy Validation**: Detect negative amounts, future dates, zero-dollar claims
+- **Duplicate Detection**: Find and quantify duplicate records
+- **Bias Detection**: Demographic, geographic, temporal, and provider bias analysis
+- **Regulatory Compliance**: ASOP and ACA anti-discrimination requirements
 
-1. **Clone or import this notebook/project to your Databricks workspace**
-2. Ensure you have access to Unity Catalog volumes
-3. Upload the provided sample CSV files into your configured volume locations (per parameter values)
-4. (Optional) Edit the default widget parameters at the top for your target catalog, schema, and data paths
-5. Run the notebook top-to-bottom  
-   - Bronze: Ingest CSVs to raw Delta tables using `COPY INTO` and ETL
-   - Silver: Transform and clean raw tables into analytics-ready models
-   - Gold: Build enrichment and summary tables for reporting
+### 💻 SAS User-Friendly
+- **Side-by-side SAS comparisons**: `PROC SQL`, `PROC MEANS`, `PROC FREQ`, `DATA` steps
+- **Familiar concepts**: LAG functions, window functions, percentiles, rolling averages
+- **Simple SQL focus**: Minimal PySpark, beginner-friendly syntax
+- **Interactive exercises**: Hands-on learning with starter code and hints
 
-## 📋 Data Model
+### 🛠️ Technical Features
+- **Databricks Unity Catalog**: Modern data governance and organization
+- **Delta Lake**: ACID transactions, time travel, and data versioning
+- **Parameterized setup**: Reusable for different environments
+- **Synthetic demo data**: Realistic healthcare payer data for safe training
 
-**Tables included:**
-- `claims_raw`, `diagnosis_raw`, `procedures_raw`, `providers_raw`, `members_raw` (Bronze)
-- Silver & Gold layers build on top, implementing best practices for date/double casting, data cleaning, deduplication, and joins.
+## 📝 How to Use This Workshop
 
-## 💡 Example Use Cases
+### For Workshop Participants (Actuaries & Analysts)
+1. **Import the notebook** to your Databricks workspace
+2. **Part 1 (Quick Setup - 10 mins)**: Run Bronze/Silver cells to load data
+   - Just execute the cells - they're simplified!
+   - Creates your working datasets
+3. **Part 2 (The Fun Part! 🎉 - 1.5 hours)**: Gold Layer Actuarial Analytics
+   - Work through 6 interactive exercises
+   - Compare SAS vs Databricks approaches
+   - Build actuarial analytics tables
+   - Detect data quality issues and bias
+4. **Explore and experiment**: Modify queries, try your own analyses
 
-- Healthcare claims analytics and visualization
-- payer data quality and pipeline testing
-- Data platform engineering training (Databricks focused)
-- Accelerating migration to medallion/lakehouse in real-world payer environments
 
-## ⚙️ Prerequisites
+## 📋 Healthcare Payer Data Model
 
-- Databricks workspace (with permissions for Unity Catalog)
-- Databricks Runtime with Delta Lake support
-- Upload access for CSV source files
+**Datasets (Bronze → Silver → Gold):**
+- **Members**: Policy data (demographics, plan info, enrollment dates)
+- **Claims**: Incurred losses (amounts, dates, provider info)
+- **Providers**: Network data (specialty, location, credentials)
+- **Diagnoses**: ICD codes linked to claims
+- **Procedures**: CPT/HCPCS codes and charges
+
+**Gold Layer Analytics Tables Created:**
+- `loss_ratios_by_segment`: Loss ratios by specialty and state
+- `claims_trend_analysis`: Monthly trending with MoM/YoY growth
+- `claims_development`: Development triangles for reserving
+
+## 💡 Actuarial Use Cases Covered
+
+### Pricing & Underwriting
+- Loss ratio analysis by segment (specialty, geography, plan)
+- Frequency and severity decomposition
+- Risk segmentation and tiering
+- Provider network cost analysis
+
+### Reserving & Forecasting
+- Claims development patterns (emergence analysis)
+- IBNR indicators and completeness checks
+- Monthly trend analysis with seasonality
+- Age-to-age development factors
+
+### Data Quality & Compliance
+- Completeness validation (missing data detection)
+- Accuracy checks (negative amounts, future dates)
+- Duplicate claim detection
+- Bias detection for regulatory compliance (ACA, ASOP)
+
+### Risk Management
+- High-risk member identification
+- Provider outlier detection (potential fraud/error)
+- Geographic and demographic bias analysis
+- Temporal completeness monitoring
+
 
 ## 🛠️ Getting Started
 
-```bash
-git clone https://github.com/bigdatavik/databricksfirststeps.git
-# or import the Databricks notebook directly via UI
-```
-In Databricks:
+### Quick Start (5 minutes)
 
-1. Open the notebook in your Workspace or Repo folder.
-2. Edit the top parameter cells for your environment (optional).
-3. Upload your sample data files to `/Volumes////...` as needed.
-4. Run the notebook and explore your new lakehouse!
+**In Databricks:**
+1. In your Databricks *Free Edition* workspace, create new **Git folder** and paste the following github link https://github.com/bigdatavik/databricksfirststeps.git
+2. Run cells sequentially - start with Part 1 (Setup), then move to Part 2 (Analytics)
+3. Work through the interactive exercises at your own pace!
+
 
 ## 📑 Project Structure
 
 ```
-├── DBSQL_Workshop_ETL and Analytics_10072025.ipynb
-├── data
-│   ├── claims.csv
-│   ├── diagnoses.csv
-│   ├── procedures.csv
-│   ├── providers.csv
-│   ├── member.csv
+├── DBX Workshop_IPA Actuaries_10262025.ipynb    ⭐ Main actuarial workshop
+├── data/
+│   ├── claims.csv                                 💰 Medical claim submissions
+│   ├── diagnoses.csv                             🏥 Diagnosis codes from claims
+│   ├── procedures.csv                            🔬 Medical procedures performed
+│   ├── providers.csv                             👨‍⚕️ Healthcare providers
+│   ├── member.csv                                 👥 Health plan enrollees
 │   └── Payor_Archive.zip
-├── past labs
-├── README.md
+├── past labs/
+│   ├── DBSQL_Workshop_ETL and Analytics_10072025.ipynb  (Original version)
+│   └── ...
+├── README.md                                      📖 This file
 └── LICENSE.md
 ```
 
-## 🧑💻 Contributing
+---
 
-Pull requests and discussions are welcome! For bug reports or suggestions, please open a GitHub issue.
+### © 2025 | Designed for actuaries, analysts, and healthcare data professionals
+**Target Audience:** Actuaries and analysts transitioning from SAS to Databricks  
+**Workshop Duration:** 2 hours (hands-on)  
+**Difficulty Level:** Beginner-friendly with intermediate analytics concepts  
 
-## 📚 Resources
-
-- [Databricks Medallion Lakehouse Architecture](https://docs.databricks.com/aws/en/lakehouse/medallion)
-- [Delta Lake Documentation](https://docs.delta.io/)
-- [Spark SQL Guide](https://spark.apache.org/docs/latest/sql-getting-started.html)
-
-### © 2025  | For demonstration, education, and payer analytics development only.
-*Last updated: October 8, 2025*
+*Last updated: October 26, 2025*
