@@ -119,6 +119,8 @@ This modular pattern ensures data lineage, scalability, and aligns with actuaria
 
 ```
 ├── DBX Workshop_IPA Actuaries_10262025.ipynb    ⭐ Main actuarial workshop
+├── [Dashboard] Actuarial Analytics              ⭐ Reference dashboard
+├── [Reference] Best Practices                   ⭐ Reference best practices
 ├── data/
 │   ├── claims.csv                                 💰 Medical claim submissions
 │   ├── diagnoses.csv                             🏥 Diagnosis codes from claims
@@ -140,4 +142,4 @@ This modular pattern ensures data lineage, scalability, and aligns with actuaria
 **Workshop Duration:** 2 hours (hands-on)  
 **Difficulty Level:** Beginner-friendly with intermediate analytics concepts  
 
-*Last updated: October 26, 2025*
+*Last updated: November 7, 2025*
