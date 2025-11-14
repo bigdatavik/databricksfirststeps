@@ -1,145 +1,130 @@
-# Databricks for Actuaries: Healthcare Analytics Workshop
+# Databricks Workshop: HQRI Risk Adjustment & Analytics
 
-This workshop is specifically designed for **actuaries and analysts** familiar with SAS who are new to Databricks, PySpark, and SQL. It provides a hands-on, beginner-friendly introduction to healthcare payer data analytics using Databricks' medallion architecture (Bronze/Silver/Gold layers), with a strong focus on **actuarial use cases**, **data quality**, and **bias detection**.
+This workshop is specifically designed for **healthcare data analysts, data engineers, and SAS users** who are new to Databricks. It provides a hands-on introduction to **Medicare risk adjustment analytics** using Databricks' medallion architecture (Bronze/Silver/Gold layers), with a strong focus on **HCC risk scoring**, **CMS encounter datamart**, **data quality**, and **performance optimization**.
 
 ## 🚀 Overview
 
-This interactive workshop guides actuaries through:
-- 📊 **Actuarial-focused analytics**: Loss ratios, claims trending, development triangles, frequency/severity
-- 🔍 **Data quality checks**: Completeness, accuracy, duplicates, and validation
-- ⚖️ **Bias detection**: Demographic, geographic, temporal, and provider bias analysis
-- 💻 **SAS to Databricks translation**: Side-by-side comparisons of familiar SAS procedures
-- 🎯 **Simple SQL approach**: Minimal PySpark, maximum hands-on exercises
-- 📈 **Regulatory compliance**: Meeting ASOP and ACA anti-discrimination requirements
+This interactive workshop guides you through:
+- 💰 **HCC Risk Score Calculations**: Calculate Medicare Advantage risk scores for CMS payment determination
+- 📊 **Encounter Datamart**: Build CMS submission-ready encounter data with validations
+- ⭐ **Star Ratings Analytics**: Revenue impact analysis and member stratification
+- 🔍 **Data Quality Audits**: Comprehensive compliance checks for regulatory requirements
+- 💻 **SAS to Databricks Migration**: Side-by-side comparisons of familiar SAS PROC steps
+- ⚡ **Lazy Evaluation & Optimization**: Best practices for deterministic, production-ready pipelines
+- 🎯 **SQL & PySpark**: Hands-on examples with both approaches
 
 
-## 📂 Medallion Architecture (Simplified for Actuaries)
+## 📂 Medallion Architecture
 
-- **Bronze Layer (Quick Setup):** Raw data ingestion from CSV files using `COPY INTO` - streamlined for fast setup
-- **Silver Layer (Quick Setup):** Basic cleaning and type corrections - get to analytics quickly!
-- **Gold Layer (Main Focus 🎉):** Deep actuarial analytics, interactive exercises, and business insights
+- **Bronze Layer (Raw Data):** Raw data ingestion from CSV files using `COPY INTO` - preserves original data for audit trails
+- **Silver Layer (Cleaned Data):** Data cleansing, deduplication, type corrections, and standardization
+- **Gold Layer (Business Analytics 🎉):** HCC risk scoring, revenue forecasting, compliance audits, and production pipelines
 
-This modular pattern ensures data lineage, scalability, and aligns with actuarial workflow requirements.
+This modular pattern ensures data lineage, scalability, ACID compliance, and aligns with regulatory requirements for Medicare Advantage reporting.
 
 ## 🏗️ Features
 
-### 🎯 Actuarial Analytics Exercises
-- **Loss Ratio Analysis**: Calculate loss ratios by specialty, state, and plan type
-- **Claims Trending**: Month-over-month and year-over-year growth analysis using window functions
-- **Development Triangles**: Claims emergence patterns for reserving (IBNR indicators)
-- **Frequency & Severity**: Risk segmentation and pricing metrics
-- **High-Risk Member Identification**: Using percentile analysis (95th, 99th)
+### 🎯 Gold Layer Analytics Examples
 
-### 🔍 Data Quality & Compliance
-- **Completeness Checks**: Identify missing critical fields
-- **Accuracy Validation**: Detect negative amounts, future dates, zero-dollar claims
-- **Duplicate Detection**: Find and quantify duplicate records
-- **Bias Detection**: Demographic, geographic, temporal, and provider bias analysis
-- **Regulatory Compliance**: ASOP and ACA anti-discrimination requirements
+* Example 1: HCC Risk Score Calculation
+* Example 2: Revenue Forecast & Impact Analysis
+* Example 3: HCC Distribution Analysis
+* Example 4: Data Quality & Compliance Audit
+* Example 5: Member Risk Stratification
+* Example 6: Provider Performance on Risk Capture
+* Example 7: Encounter Datamart for CMS Submission
+* Example 8: Lazy Evaluation & Deterministic Execution ⚡
 
-### 💻 SAS User-Friendly
-- **Side-by-side SAS comparisons**: `PROC SQL`, `PROC MEANS`, `PROC FREQ`, `DATA` steps
-- **Familiar concepts**: LAG functions, window functions, percentiles, rolling averages
-- **Simple SQL focus**: Minimal PySpark, beginner-friendly syntax
-- **Interactive exercises**: Hands-on learning with starter code and hints
+### 💻 SAS to Databricks Migration
+- **Side-by-side comparisons**: SAS PROC SQL → Databricks SQL/PySpark
+- **Modern functions**: COLLECT_SET(), EXPLODE(), window functions
+- **Performance advantages**: Distributed processing vs. single-server SAS
+- **Cost benefits**: Pay-per-use vs. expensive SAS licensing
+- **Migration best practices**: CTE-based queries, array operations, caching strategies
 
 ### 🛠️ Technical Features
-- **Databricks Unity Catalog**: Modern data governance and organization
-- **Delta Lake**: ACID transactions, time travel, and data versioning
-- **Parameterized setup**: Reusable for different environments
-- **Synthetic demo data**: Realistic healthcare payer data for safe training
-
-## 📝 How to Use This Workshop
-
-### For Workshop Participants (Actuaries & Analysts)
-1. **Import the notebook** to your Databricks workspace
-2. **Part 1 (Quick Setup - 10 mins)**: Run Bronze/Silver cells to load data
-   - Just execute the cells - they're simplified!
-   - Creates your working datasets
-3. **Part 2 (The Fun Part! 🎉 - 1.5 hours)**: Gold Layer Actuarial Analytics
-   - Work through 6 interactive exercises
-   - Compare SAS vs Databricks approaches
-   - Build actuarial analytics tables
-   - Detect data quality issues and bias
-4. **Explore and experiment**: Modify queries, try your own analyses
+- **Unity Catalog**: Unified governance, row/column-level security
+- **Delta Lake**: ACID transactions, time travel, schema evolution
+- **Predictive Optimization**: Automatic table maintenance and optimization
+- **AI/BI & Genie**: Natural language queries and self-service analytics
+- **Production-ready patterns**: Checkpointing, caching, deterministic execution
 
 
-## 📋 Healthcare Payer Data Model
+## 📋 HQRI Data Model
 
 **Datasets (Bronze → Silver → Gold):**
-- **Members**: Policy data (demographics, plan info, enrollment dates)
-- **Claims**: Incurred losses (amounts, dates, provider info)
-- **Providers**: Network data (specialty, location, credentials)
-- **Diagnoses**: ICD codes linked to claims
-- **Procedures**: CPT/HCPCS codes and charges
+- **Members**: Medicare Advantage enrollees (demographics, plan info, enrollment dates)
+- **Claims**: Medical encounters with diagnosis codes for HCC mapping
+- **Providers**: Healthcare providers (NPI, specialty, location)
+- **Diagnoses**: ICD-10 diagnosis codes linked to claims
+- **Procedures**: CPT/HCPCS procedure codes and charges
+
+**Reference Data:**
+- **HCC Reference Table**: ICD-10 to HCC category mapping with coefficients
 
 **Gold Layer Analytics Tables Created:**
-- `loss_ratios_by_segment`: Loss ratios by specialty and state
-- `claims_trend_analysis`: Monthly trending with MoM/YoY growth
-- `claims_development`: Development triangles for reserving
-
-## 💡 Actuarial Use Cases Covered
-
-### Pricing & Underwriting
-- Loss ratio analysis by segment (specialty, geography, plan)
-- Frequency and severity decomposition
-- Risk segmentation and tiering
-- Provider network cost analysis
-
-### Reserving & Forecasting
-- Claims development patterns (emergence analysis)
-- IBNR indicators and completeness checks
-- Monthly trend analysis with seasonality
-- Age-to-age development factors
-
-### Data Quality & Compliance
-- Completeness validation (missing data detection)
-- Accuracy checks (negative amounts, future dates)
-- Duplicate claim detection
-- Bias detection for regulatory compliance (ACA, ASOP)
-
-### Risk Management
-- High-risk member identification
-- Provider outlier detection (potential fraud/error)
-- Geographic and demographic bias analysis
-- Temporal completeness monitoring
+- `member_risk_scores`: Member-level HCC risk scores and projected payments
+- `revenue_forecast`: Revenue projections by plan and risk tier
+- `hcc_distribution`: HCC category revenue impact analysis
+- `data_quality_audit`: CMS submission validation results
+- `member_risk_stratification`: Risk tier segmentation for care management
+- `provider_risk_capture_performance`: Provider HCC documentation performance
+- `encounter_datamart_cms`: CMS-ready encounter submission table
+- `enriched_claims_checkpoint`: Production pipeline checkpoint example
 
 
 ## 🛠️ Getting Started
 
+### Prerequisites
+- Databricks workspace (Community Edition or higher)
+- Basic SQL knowledge
+- Familiarity with healthcare payer data (helpful but not required)
+- No prior Spark/PySpark experience needed
+
 ### Quick Start (5 minutes)
 
 **In Databricks:**
-1. In your Databricks *Free Edition* workspace, create new **Git folder** and paste the following github link https://github.com/bigdatavik/databricksfirststeps.git
-2. Run cells sequentially - start with Part 1 (Setup), then move to Part 2 (Analytics)
-3. Work through the interactive exercises at your own pace!
+1. Open the notebook `DBX Workshop_HQRI_11142025.ipynb` in your workspace
+2. Run the setup cells to configure catalog, schemas, and load data
+3. Follow along with examples sequentially:
+4. Work through hands-on exercises and experiment with your own queries!
 
 
 ## 📑 Project Structure
 
 ```
-├── DBX Workshop_IPA Actuaries_10262025.ipynb    ⭐ Main actuarial workshop
-├── [Dashboard] Actuarial Analytics              ⭐ Reference dashboard
-├── [Reference] Best Practices                   ⭐ Reference best practices
-├── data/
-│   ├── claims.csv                                 💰 Medical claim submissions
-│   ├── diagnoses.csv                             🏥 Diagnosis codes from claims
-│   ├── procedures.csv                            🔬 Medical procedures performed
-│   ├── providers.csv                             👨‍⚕️ Healthcare providers
-│   ├── member.csv                                 👥 Health plan enrollees
-│   └── Payor_Archive.zip
-├── past labs/
-│   ├── DBSQL_Workshop_ETL and Analytics_10072025.ipynb  (Original version)
-│   └── ...
+├── DBX Workshop_HQRI_11142025.ipynb             ⭐ Training notebook
+├── [Reference] Best Practices                    📚 Best practices guide
 ├── README.md                                      📖 This file
-└── LICENSE.md
+├── LICENSE.md                                      📖 License
+└── data/
+    ├── claims.csv                                 💰 Medical encounters
+    ├── diagnoses.csv                             🏥 ICD-10 diagnosis codes
+    ├── procedures.csv                            🔬 CPT/HCPCS procedure codes
+    ├── providers.csv                             👨‍⚕️ Healthcare providers (with NPI)
+    ├── member.csv                                 👥 Medicare Advantage enrollees
+    └── Payor_Archive.zip                          📦 Source data archive
 ```
 
 ---
 
-### © 2025 | Designed for actuaries, analysts, and healthcare data professionals
-**Target Audience:** Actuaries and analysts transitioning from SAS to Databricks  
-**Workshop Duration:** 2 hours (hands-on)  
-**Difficulty Level:** Beginner-friendly with intermediate analytics concepts  
+## 🎯 Workshop Objectives Summary
 
-*Last updated: November 7, 2025*
+By the end of this workshop, you will be able to:
+
+1. ✅ Build **Medallion Architecture** pipelines for Medicare risk adjustment data
+2. ✅ Calculate **HCC risk scores** and project CMS payments
+3. ✅ Create **CMS encounter datamart** tables with validation
+4. ✅ Perform **data quality audits** for regulatory compliance
+5. ✅ Build **Gold layer analytics** for revenue optimization
+6. ✅ Implement **lazy evaluation** and **deterministic execution** best practices
+7. ✅ Migrate **SAS workflows** to Databricks efficiently
+
+---
+
+### © 2025 | Healthcare Quality Reporting & Improvement (HQRI) Analytics Workshop
+**Target Audience:** Healthcare data analysts, data engineers, and SAS users transitioning to Databricks  
+**Difficulty Level:** Beginner to intermediate  
+**Focus Areas:** Medicare Advantage, HCC risk adjustment, CMS submissions, performance optimization
+
+*Last updated: November 14, 2025*
