@@ -1,0 +1,1181 @@
+{
+  "datasets": [
+    {
+      "name": "1a2b3c4d",
+      "displayName": "loss_ratios",
+      "queryLines": [
+        "SELECT\n",
+        "  specialty,\n",
+        "  state,\n",
+        "  claim_count,\n",
+        "  incurred_losses,\n",
+        "  loss_ratio\n",
+        "FROM\n",
+        "  `my_catalog`.`payer_gold`.`loss_ratios`\n",
+        "ORDER BY\n",
+        "  loss_ratio DESC"
+      ]
+    },
+    {
+      "name": "2b3c4d5e",
+      "displayName": "claims_trends",
+      "queryLines": [
+        "SELECT\n",
+        "  claim_month,\n",
+        "  claim_count,\n",
+        "  total_incurred,\n",
+        "  avg_claim_cost,\n",
+        "  mom_growth_pct,\n",
+        "  yoy_growth_pct,\n",
+        "  moving_avg_3mo\n",
+        "FROM\n",
+        "  `my_catalog`.`payer_gold`.`claims_trend_analysis`\n",
+        "ORDER BY\n",
+        "  claim_month ASC"
+      ]
+    },
+    {
+      "name": "3c4d5e6f",
+      "displayName": "high_risk_members",
+      "queryLines": [
+        "SELECT\n",
+        "  member_id,\n",
+        "  first_name,\n",
+        "  last_name,\n",
+        "  age,\n",
+        "  gender,\n",
+        "  claim_count,\n",
+        "  total_incurred,\n",
+        "  avg_claim_cost,\n",
+        "  risk_tier,\n",
+        "  plan_id\n",
+        "FROM\n",
+        "  `my_catalog`.`payer_gold`.`high_risk_members`\n",
+        "WHERE\n",
+        "  risk_tier IN ('Critical Risk (95th+ percentile)', 'High Risk (90th-95th percentile)')\n",
+        "ORDER BY\n",
+        "  total_incurred DESC"
+      ]
+    },
+    {
+      "name": "4d5e6f7g",
+      "displayName": "freq_sev_demographics",
+      "queryLines": [
+        "SELECT\n",
+        "  age_band,\n",
+        "  gender,\n",
+        "  claim_count,\n",
+        "  member_count,\n",
+        "  total_incurred,\n",
+        "  frequency,\n",
+        "  severity,\n",
+        "  pure_premium,\n",
+        "  frequency_relativity,\n",
+        "  severity_relativity,\n",
+        "  credibility_indicator\n",
+        "FROM\n",
+        "  `my_catalog`.`payer_gold`.`freq_sev_by_demographics`\n",
+        "ORDER BY\n",
+        "  age_band, gender"
+      ]
+    },
+    {
+      "name": "5e6f7g8h",
+      "displayName": "claims_development",
+      "queryLines": [
+        "SELECT\n",
+        "  accident_year,\n",
+        "  development_period,\n",
+        "  claim_count,\n",
+        "  cumulative_incurred,\n",
+        "  avg_claim_size,\n",
+        "  pct_of_total_claims\n",
+        "FROM\n",
+        "  `my_catalog`.`payer_gold`.`claims_development`\n",
+        "ORDER BY\n",
+        "  accident_year, development_period"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "page_overview",
+      "displayName": "Executive Summary",
+      "layout": [
+        {
+          "widget": {
+            "name": "title_widget",
+            "multilineTextboxSpec": {
+              "lines": [
+                "# Actuarial Analytics Dashboard<br><span style=\"color: #00A972;\">Healthcare Payer Performance Metrics</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "total_claims_counter",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "2b3c4d5e",
+                  "fields": [
+                    {
+                      "name": "sum(claim_count)",
+                      "expression": "SUM(`claim_count`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "value": {
+                  "displayName": "Total Claims",
+                  "fieldName": "sum(claim_count)"
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Total Claims"
+              },
+              "version": 2,
+              "widgetType": "counter"
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "total_incurred_counter",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "2b3c4d5e",
+                  "fields": [
+                    {
+                      "name": "sum(total_incurred)",
+                      "expression": "SUM(`total_incurred`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "value": {
+                  "displayName": "Total Incurred",
+                  "fieldName": "sum(total_incurred)"
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Total Incurred Losses ($)"
+              },
+              "version": 2,
+              "widgetType": "counter"
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 2,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "avg_claim_counter",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "2b3c4d5e",
+                  "fields": [
+                    {
+                      "name": "avg(avg_claim_cost)",
+                      "expression": "AVG(`avg_claim_cost`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "value": {
+                  "displayName": "Average Claim Cost",
+                  "fieldName": "avg(avg_claim_cost)"
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Average Claim Cost ($)"
+              },
+              "version": 2,
+              "widgetType": "counter"
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 2,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "claims_trend_line",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "2b3c4d5e",
+                  "fields": [
+                    {
+                      "name": "claim_month",
+                      "expression": "`claim_month`"
+                    },
+                    {
+                      "name": "total_incurred",
+                      "expression": "`total_incurred`"
+                    },
+                    {
+                      "name": "moving_avg_3mo",
+                      "expression": "`moving_avg_3mo`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "x": {
+                  "axis": {
+                    "title": "Month"
+                  },
+                  "displayName": "Claim Month",
+                  "fieldName": "claim_month",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "axis": {
+                    "title": "Incurred Losses ($)"
+                  },
+                  "displayName": "Total Incurred",
+                  "fieldName": "total_incurred",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Monthly Claims Trend"
+              },
+              "mark": {
+                "colors": [
+                  "#077A9D",
+                  "#FFAB00"
+                ]
+              },
+              "version": 3,
+              "widgetType": "line"
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 4,
+            "width": 3,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "mom_growth_chart",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "2b3c4d5e",
+                  "fields": [
+                    {
+                      "name": "claim_month",
+                      "expression": "`claim_month`"
+                    },
+                    {
+                      "name": "mom_growth_pct",
+                      "expression": "`mom_growth_pct`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "x": {
+                  "axis": {
+                    "title": "Month"
+                  },
+                  "displayName": "Claim Month",
+                  "fieldName": "claim_month",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "axis": {
+                    "title": "MoM Growth %"
+                  },
+                  "displayName": "Month-over-Month Growth",
+                  "fieldName": "mom_growth_pct",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Month-over-Month Growth Trend"
+              },
+              "mark": {
+                "colors": [
+                  "#00A972"
+                ]
+              },
+              "version": 3,
+              "widgetType": "bar"
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 4,
+            "width": 3,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "loss_ratio_table",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "1a2b3c4d",
+                  "fields": [
+                    {
+                      "name": "specialty",
+                      "expression": "`specialty`"
+                    },
+                    {
+                      "name": "state",
+                      "expression": "`state`"
+                    },
+                    {
+                      "name": "claim_count",
+                      "expression": "`claim_count`"
+                    },
+                    {
+                      "name": "incurred_losses",
+                      "expression": "`incurred_losses`"
+                    },
+                    {
+                      "name": "loss_ratio",
+                      "expression": "`loss_ratio`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "allowHTMLByDefault": false,
+              "condensed": true,
+              "encodings": {
+                "columns": [
+                  {
+                    "alignContent": "left",
+                    "allowHTML": false,
+                    "allowSearch": false,
+                    "displayAs": "string",
+                    "displayName": "Specialty",
+                    "fieldName": "specialty",
+                    "order": 100000,
+                    "title": "Specialty",
+                    "type": "string",
+                    "visible": true
+                  },
+                  {
+                    "alignContent": "left",
+                    "allowHTML": false,
+                    "allowSearch": false,
+                    "displayAs": "string",
+                    "displayName": "State",
+                    "fieldName": "state",
+                    "order": 100001,
+                    "title": "State",
+                    "type": "string",
+                    "visible": true
+                  },
+                  {
+                    "alignContent": "right",
+                    "allowHTML": false,
+                    "allowSearch": false,
+                    "displayAs": "number",
+                    "displayName": "Claim Count",
+                    "fieldName": "claim_count",
+                    "numberFormat": "0,0",
+                    "order": 100002,
+                    "title": "Claims",
+                    "type": "integer",
+                    "visible": true
+                  },
+                  {
+                    "alignContent": "right",
+                    "allowHTML": false,
+                    "allowSearch": false,
+                    "displayAs": "number",
+                    "displayName": "Incurred Losses",
+                    "fieldName": "incurred_losses",
+                    "numberFormat": "$0,0.00",
+                    "order": 100003,
+                    "title": "Incurred ($)",
+                    "type": "float",
+                    "visible": true
+                  },
+                  {
+                    "alignContent": "right",
+                    "allowHTML": false,
+                    "allowSearch": false,
+                    "cellFormat": {
+                      "default": {
+                        "foregroundColor": "#1FA873"
+                      },
+                      "rules": [
+                        {
+                          "if": {
+                            "column": "loss_ratio",
+                            "fn": ">",
+                            "literal": "50"
+                          },
+                          "value": {
+                            "foregroundColor": "#FFD465"
+                          }
+                        },
+                        {
+                          "if": {
+                            "column": "loss_ratio",
+                            "fn": ">",
+                            "literal": "75"
+                          },
+                          "value": {
+                            "foregroundColor": "#9C2638"
+                          }
+                        }
+                      ]
+                    },
+                    "displayAs": "number",
+                    "displayName": "Loss Ratio",
+                    "fieldName": "loss_ratio",
+                    "numberFormat": "0.00",
+                    "order": 100004,
+                    "title": "Loss Ratio",
+                    "type": "float",
+                    "visible": true
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Loss Ratios by Specialty and State"
+              },
+              "itemsPerPage": 25,
+              "paginationSize": "default",
+              "version": 1,
+              "widgetType": "table",
+              "withRowNumber": false
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 8,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    },
+    {
+      "name": "page_demographics",
+      "displayName": "Demographics & Risk",
+      "layout": [
+        {
+          "widget": {
+            "name": "demo_title",
+            "multilineTextboxSpec": {
+              "lines": [
+                "# Frequency & Severity Analysis<br><span style=\"color: #00A972;\">Risk Segmentation by Demographics</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "freq_by_age_gender",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "4d5e6f7g",
+                  "fields": [
+                    {
+                      "name": "age_band",
+                      "expression": "`age_band`"
+                    },
+                    {
+                      "name": "gender",
+                      "expression": "`gender`"
+                    },
+                    {
+                      "name": "frequency",
+                      "expression": "`frequency`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "color": {
+                  "displayName": "Gender",
+                  "fieldName": "gender",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "x": {
+                  "axis": {
+                    "title": "Age Band"
+                  },
+                  "displayName": "Age Band",
+                  "fieldName": "age_band",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "axis": {
+                    "title": "Frequency (Claims per Member)"
+                  },
+                  "displayName": "Frequency",
+                  "fieldName": "frequency",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Claims Frequency by Age and Gender"
+              },
+              "mark": {
+                "colors": [
+                  "#077A9D",
+                  "#FFAB00",
+                  "#00A972"
+                ]
+              },
+              "version": 3,
+              "widgetType": "bar"
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 3,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "severity_by_age_gender",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "4d5e6f7g",
+                  "fields": [
+                    {
+                      "name": "age_band",
+                      "expression": "`age_band`"
+                    },
+                    {
+                      "name": "gender",
+                      "expression": "`gender`"
+                    },
+                    {
+                      "name": "severity",
+                      "expression": "`severity`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "color": {
+                  "displayName": "Gender",
+                  "fieldName": "gender",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "x": {
+                  "axis": {
+                    "title": "Age Band"
+                  },
+                  "displayName": "Age Band",
+                  "fieldName": "age_band",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "axis": {
+                    "title": "Severity ($ per Claim)"
+                  },
+                  "displayName": "Severity",
+                  "fieldName": "severity",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Claims Severity by Age and Gender"
+              },
+              "mark": {
+                "colors": [
+                  "#077A9D",
+                  "#FFAB00",
+                  "#00A972"
+                ]
+              },
+              "version": 3,
+              "widgetType": "bar"
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 2,
+            "width": 3,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "pure_premium_scatter",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "4d5e6f7g",
+                  "fields": [
+                    {
+                      "name": "age_band",
+                      "expression": "`age_band`"
+                    },
+                    {
+                      "name": "severity",
+                      "expression": "`severity`"
+                    },
+                    {
+                      "name": "frequency",
+                      "expression": "`frequency`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "scatter",
+              "encodings": {
+                "x": {
+                  "fieldName": "severity",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "compact",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    }
+                  },
+                  "axis": {
+                    "title": "Severity"
+                  },
+                  "displayName": "Frequency"
+                },
+                "y": {
+                  "fieldName": "frequency",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "axis": {
+                    "title": "Frequency"
+                  },
+                  "displayName": "Severity"
+                },
+                "color": {
+                  "fieldName": "age_band",
+                  "scale": {
+                    "type": "categorical"
+                  },
+                  "displayName": "Age Band"
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Frequency vs Severity Analysis"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 7,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "high_risk_table",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "3c4d5e6f",
+                  "fields": [
+                    {
+                      "name": "member_id",
+                      "expression": "`member_id`"
+                    },
+                    {
+                      "name": "first_name",
+                      "expression": "`first_name`"
+                    },
+                    {
+                      "name": "last_name",
+                      "expression": "`last_name`"
+                    },
+                    {
+                      "name": "age",
+                      "expression": "`age`"
+                    },
+                    {
+                      "name": "gender",
+                      "expression": "`gender`"
+                    },
+                    {
+                      "name": "claim_count",
+                      "expression": "`claim_count`"
+                    },
+                    {
+                      "name": "total_incurred",
+                      "expression": "`total_incurred`"
+                    },
+                    {
+                      "name": "risk_tier",
+                      "expression": "`risk_tier`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "allowHTMLByDefault": false,
+              "condensed": true,
+              "encodings": {
+                "columns": [
+                  {
+                    "alignContent": "left",
+                    "displayAs": "string",
+                    "displayName": "Member ID",
+                    "fieldName": "member_id",
+                    "order": 100000,
+                    "title": "Member ID",
+                    "type": "string",
+                    "visible": true
+                  },
+                  {
+                    "alignContent": "left",
+                    "displayAs": "string",
+                    "displayName": "First Name",
+                    "fieldName": "first_name",
+                    "order": 100001,
+                    "title": "First Name",
+                    "type": "string",
+                    "visible": true
+                  },
+                  {
+                    "alignContent": "left",
+                    "displayAs": "string",
+                    "displayName": "Last Name",
+                    "fieldName": "last_name",
+                    "order": 100002,
+                    "title": "Last Name",
+                    "type": "string",
+                    "visible": true
+                  },
+                  {
+                    "alignContent": "right",
+                    "displayAs": "number",
+                    "displayName": "Age",
+                    "fieldName": "age",
+                    "numberFormat": "0",
+                    "order": 100003,
+                    "title": "Age",
+                    "type": "integer",
+                    "visible": true
+                  },
+                  {
+                    "alignContent": "left",
+                    "displayAs": "string",
+                    "displayName": "Gender",
+                    "fieldName": "gender",
+                    "order": 100004,
+                    "title": "Gender",
+                    "type": "string",
+                    "visible": true
+                  },
+                  {
+                    "alignContent": "right",
+                    "displayAs": "number",
+                    "displayName": "Claims",
+                    "fieldName": "claim_count",
+                    "numberFormat": "0",
+                    "order": 100005,
+                    "title": "Claims",
+                    "type": "integer",
+                    "visible": true
+                  },
+                  {
+                    "alignContent": "right",
+                    "displayAs": "number",
+                    "displayName": "Total Incurred",
+                    "fieldName": "total_incurred",
+                    "numberFormat": "$0,0.00",
+                    "order": 100006,
+                    "title": "Total Incurred",
+                    "type": "float",
+                    "visible": true
+                  },
+                  {
+                    "alignContent": "left",
+                    "displayAs": "string",
+                    "displayName": "Risk Tier",
+                    "fieldName": "risk_tier",
+                    "order": 100007,
+                    "title": "Risk Tier",
+                    "type": "string",
+                    "visible": true
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "High-Risk Members (95th+ Percentile)"
+              },
+              "itemsPerPage": 25,
+              "paginationSize": "default",
+              "version": 1,
+              "widgetType": "table",
+              "withRowNumber": false
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 13,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    },
+    {
+      "name": "page_development",
+      "displayName": "Claims Development",
+      "layout": [
+        {
+          "widget": {
+            "name": "dev_title",
+            "multilineTextboxSpec": {
+              "lines": [
+                "# Claims Development Analysis \n",
+                "\n",
+                "# <span style=\"color: #00A972;\">Development Patterns & Emergence by Accident Year</span>"
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "development_heatmap",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "5e6f7g8h",
+                  "fields": [
+                    {
+                      "name": "accident_year",
+                      "expression": "`accident_year`"
+                    },
+                    {
+                      "name": "development_period",
+                      "expression": "`development_period`"
+                    },
+                    {
+                      "name": "cumulative_incurred",
+                      "expression": "`cumulative_incurred`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "color": {
+                  "displayName": "Cumulative Incurred",
+                  "fieldName": "cumulative_incurred",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "x": {
+                  "axis": {
+                    "title": "Development Period"
+                  },
+                  "displayName": "Development Period",
+                  "fieldName": "development_period",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "axis": {
+                    "title": "Accident Year"
+                  },
+                  "displayName": "Accident Year",
+                  "fieldName": "accident_year",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Claims Development Triangle (Heatmap)"
+              },
+              "mark": {
+                "colors": [
+                  "#FFFFFF",
+                  "#8BCAE7",
+                  "#077A9D",
+                  "#003D52"
+                ]
+              },
+              "version": 3,
+              "widgetType": "bar"
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 6,
+            "height": 5
+          }
+        },
+        {
+          "widget": {
+            "name": "development_table",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "5e6f7g8h",
+                  "fields": [
+                    {
+                      "name": "accident_year",
+                      "expression": "`accident_year`"
+                    },
+                    {
+                      "name": "development_period",
+                      "expression": "`development_period`"
+                    },
+                    {
+                      "name": "claim_count",
+                      "expression": "`claim_count`"
+                    },
+                    {
+                      "name": "cumulative_incurred",
+                      "expression": "`cumulative_incurred`"
+                    },
+                    {
+                      "name": "avg_claim_size",
+                      "expression": "`avg_claim_size`"
+                    },
+                    {
+                      "name": "pct_of_total_claims",
+                      "expression": "`pct_of_total_claims`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "allowHTMLByDefault": false,
+              "condensed": true,
+              "encodings": {
+                "columns": [
+                  {
+                    "alignContent": "left",
+                    "displayAs": "string",
+                    "displayName": "Accident Year",
+                    "fieldName": "accident_year",
+                    "order": 100000,
+                    "title": "Accident Year",
+                    "type": "string",
+                    "visible": true
+                  },
+                  {
+                    "alignContent": "left",
+                    "displayAs": "string",
+                    "displayName": "Development Period",
+                    "fieldName": "development_period",
+                    "order": 100001,
+                    "title": "Development",
+                    "type": "string",
+                    "visible": true
+                  },
+                  {
+                    "alignContent": "right",
+                    "displayAs": "number",
+                    "displayName": "Claim Count",
+                    "fieldName": "claim_count",
+                    "numberFormat": "0,0",
+                    "order": 100002,
+                    "title": "Claims",
+                    "type": "integer",
+                    "visible": true
+                  },
+                  {
+                    "alignContent": "right",
+                    "displayAs": "number",
+                    "displayName": "Cumulative Incurred",
+                    "fieldName": "cumulative_incurred",
+                    "numberFormat": "$0,0.00",
+                    "order": 100003,
+                    "title": "Cumulative ($)",
+                    "type": "float",
+                    "visible": true
+                  },
+                  {
+                    "alignContent": "right",
+                    "displayAs": "number",
+                    "displayName": "Average Claim Size",
+                    "fieldName": "avg_claim_size",
+                    "numberFormat": "$0,0.00",
+                    "order": 100004,
+                    "title": "Avg Claim ($)",
+                    "type": "float",
+                    "visible": true
+                  },
+                  {
+                    "alignContent": "right",
+                    "displayAs": "number",
+                    "displayName": "% of Total",
+                    "fieldName": "pct_of_total_claims",
+                    "numberFormat": "0.00%",
+                    "order": 100005,
+                    "title": "% of Total",
+                    "type": "float",
+                    "visible": true
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Development Triangle Detail"
+              },
+              "itemsPerPage": 25,
+              "paginationSize": "default",
+              "version": 1,
+              "widgetType": "table",
+              "withRowNumber": false
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 7,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "genieSpace": {
+      "isEnabled": true
+    },
+    "applyModeEnabled": false
+  }
+}
