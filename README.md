@@ -1,41 +1,49 @@
 # Databricks Workshop: Data & Analytics
-**For Business Intelligence & Data Analytics Professionals**
+**For BI Organization - Operational Reporting & Analytics**
 
-This workshop is specifically designed for **Business Intelligence and Data Analytics professionals** who are transitioning from **SAS to Databricks**. It provides a hands-on introduction to Databricks' **Medallion Architecture** (Bronze/Silver/Gold layers), with a strong focus on **SAS-to-SQL migration**, **business analytics**, **data quality**, and **performance optimization**.
+This workshop is specifically designed for the **BI Organization** - analysts who support operational reporting to run day-to-day business operations. It provides a hands-on introduction to Databricks' **Medallion Architecture** (Bronze/Silver/Gold layers), with a strong focus on **operational reporting**, **compliance analytics**, **contact center metrics**, and **data quality validation**.
 
 ## 🚀 Overview
 
 This interactive workshop guides you through:
-- 🔄 **SAS to Databricks Migration**: Side-by-side comparisons of SAS PROC SQL → Databricks SQL/PySpark
-- 📊 **Customer Analytics**: Aggregations, segmentation, and business metrics calculation
-- 💰 **Revenue Analysis**: Financial performance, trends, and forecasting
-- 🔍 **Data Quality Audits**: Comprehensive validation checks for data governance
-- 🏆 **Performance Metrics**: Top performers, rankings, and leaderboard analyses
-- 🎯 **SQL & PySpark**: Hands-on examples with both approaches
+- 📞 **Contact Center Analytics**: Call volumes, wait times, service levels, and agent performance
+- ✅ **Claims Processing Compliance**: Processing times, regulatory compliance, and SLA tracking
+- 👥 **Member Services & Enrollment**: Open enrollment tracking, retention analysis, and engagement metrics
+- 📊 **Operational Dashboards**: Daily KPIs, trend analysis, and period-over-period comparisons
+- 🔍 **Data Quality Audits**: Comprehensive validation checks for compliance reporting
+- 💻 **Databricks SQL**: Hands-on SQL examples for operational reporting
 
 
 ## 📂 Medallion Architecture
 
 - **Bronze Layer (Raw Data):** Raw data ingestion from CSV files using `COPY INTO` - preserves original data for audit trails
 - **Silver Layer (Cleaned Data):** Data cleansing, deduplication, type corrections, and standardization
-- **Gold Layer (Business Analytics 🎉):** Customer analytics, revenue forecasting, performance metrics, and production pipelines
+- **Gold Layer (Operational Analytics 🎉):** Contact center metrics, claims compliance, enrollment tracking, operational dashboards, and data quality audits
 
 This modular pattern ensures data lineage, scalability, ACID compliance, and is the industry-standard approach for organizing data across all domains (retail, finance, manufacturing, healthcare, etc.).
 
 ## 🏗️ Features
 
-### 🎯 Hands-on Exercises
-* **Exercise #1**: Asking Databricks Assistant
-* **Exercise #2**: Calculating Risk Score
-* **Exercise #3**: Calculating Revenue Forecast
-* **Exercise #4**: Conducting HCC Distribution Analysis
+### 🎯 Five SQL Examples for Operational Reporting
+1. **Contact Center Performance Metrics**: Monitor call volumes, wait times, and service levels
+2. **Claims Processing Compliance Report**: Track processing times and regulatory compliance
+3. **Member Services Enrollment Tracking**: Analyze open enrollment and member retention
+4. **Operational Daily Dashboard**: Daily KPIs with trend analysis and period comparisons
+5. **Data Quality Audit for Compliance**: Validate data completeness for regulatory reporting
 
-### 💻 SAS to Databricks Migration
-- **Side-by-side comparisons**: SAS PROC SQL → Databricks SQL/PySpark
-- **Modern functions**: COLLECT_SET(), EXPLODE(), window functions
-- **Performance advantages**: Distributed processing vs. single-server SAS
-- **Cost benefits**: Pay-per-use vs. expensive SAS licensing
-- **Migration best practices**: CTE-based queries, array operations, caching strategies
+### 🎯 Hands-on Exercises
+
+* **Exercise #1**: Calculate the total claims by specialty in SQL
+* **Exercise #2**: Provider Performance by State - State-level claims aggregation and metrics
+* **Exercise #3**: Weekly Claims Trend Analysis - Week-over-week trends with rolling averages
+
+### 💻 Databricks SQL Features
+- **CTEs (WITH clause)**: Modular query structure for complex logic
+- **Window Functions**: LAG(), SUM() OVER(), ROW_NUMBER() for trend analysis
+- **Advanced Aggregations**: PERCENTILE(), MODE() for statistical analysis
+- **Date Functions**: DATE_TRUNC(), DATEDIFF() for time-based analysis
+- **UNION ALL**: Combining multiple data quality checks
+- **NULL Handling**: NULLIF() to prevent divide-by-zero errors
 
 ### 🛠️ Technical Features
 - **Unity Catalog**: Unified governance, row/column-level security
@@ -47,58 +55,59 @@ This modular pattern ensures data lineage, scalability, ACID compliance, and is 
 
 ## 📋 Example Dataset (Healthcare Payer)
 
-**Note**: This workshop uses a healthcare payer dataset as an example, but all concepts apply to any business domain.
+**Note**: This workshop uses a healthcare payer dataset that simulates upstream data patterns currently in SQL Server. All concepts apply to your operational reporting needs.
 
 **Datasets (Bronze → Silver → Gold):**
-- **Members**: Customer/member demographics and attributes
-- **Claims**: Transaction records with financial details
-- **Providers**: Service provider/vendor information
-- **Diagnoses**: Classification codes for categorization
-- **Procedures**: Service details and associated costs
+- **Members**: Member demographics and enrollment information
+- **Claims**: Transaction records for claims processing operations
+- **Providers**: Provider network information
+- **Diagnoses**: Diagnosis codes for classification and reporting
+- **Procedures**: Procedure details and associated costs
 
 
 ## 🛠️ Getting Started
 
 ### Prerequisites
 - Databricks workspace (Community Edition or higher)
-- Basic SQL knowledge (SAS PROC SQL experience is helpful)
+- Basic SQL knowledge (SQL Server experience is helpful)
 - No prior Spark/PySpark experience needed
-- Familiarity with business intelligence and analytics concepts
+- Familiarity with operational reporting and business intelligence
 
 ### Quick Start (5 minutes)
 
 **In Databricks:**
-1. Open the notebook `DBX Workshop_DnA_11202025.ipynb` in your workspace
+1. Open the notebook `DBX Workshop_DnA_01122026.ipynb` in your workspace
 2. Run the setup cells to configure catalog, schemas, and load example data
 3. Follow along with examples sequentially:
-   - Setup 
-   - Bronze/Silver layer examples
-   - Gold layer analytics examples
-   - Hands-on SAS-to-Databricks exercises
-4. Work through hands-on exercises and experiment with your own queries!
+   - Setup and data loading
+   - Bronze/Silver layer data preparation
+   - Five Gold layer operational reporting examples
+   - Two hands-on exercises with solutions
+4. Practice with the exercises and adapt queries for your use cases!
 
 
 ## 📑 Project Structure
 
 ```
-├── DBX Workshop_DnA_11202025.ipynb              ⭐ Main training notebook
-├── [Reference] Best Practices                    📚 Best practices guide
-├── README.md                                 📖 This file
-├── LICENSE.md                                    📖 License
+├── DBX Workshop_DnA_01122026.ipynb              ⭐ Main training notebook
+├── [Reference] Best Practices.ipynb             📚 Best practices guide
+├── README.md                                    📖 This file
+├── LICENSE.md                                   📄 License
 └── data/
-    ├── claims.csv                                💰 Transaction/claims records
+    ├── claims.csv                               💰 Transaction/claims records
     ├── diagnoses.csv                            🏥 Classification codes
     ├── procedures.csv                           🔬 Service/procedure details
     ├── providers.csv                            👨‍⚕️ Service providers/vendors
-    ├── member.csv                               👥 Customer/member data
+    ├── member.csv                               👥 Member/customer data
     └── Payor_Archive.zip                        📦 Source data archive
 ```
 
+
 ---
 
-### © 2025 | Databricks Workshop: Data & Analytics
-**Target Audience:** Business Intelligence and Data Analytics professionals transitioning from SAS to Databricks  
+### © 2026 | Databricks Workshop: Data & Analytics
+**Target Audience:** BI Organization analysts supporting operational reporting  
 **Difficulty Level:** Beginner to intermediate  
-**Focus Areas:** SAS migration, Medallion architecture, Gold layer analytics, production pipelines  
+**Focus Areas:** Operational reporting, compliance analytics, contact center metrics, data quality  
 
-*Last updated: November 20, 2025*
+*Last updated: January 12, 2026*
